@@ -38,7 +38,7 @@ public class UserService implements UserDetailsService {
  
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
  
-		UserDetails userDetails = (UserDetails) new User(user.getUser_name(), encoder.encode(user.getPassword()),
+		UserDetails userDetails = (UserDetails) new User(user.getUser_name(), encoder.encode(user.getPass()),
 				grantList);
 		return userDetails;
 	}

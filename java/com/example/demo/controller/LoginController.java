@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 //mypageにアクセス
 public class LoginController {
-	@RequestMapping(value = "/mypage", method = RequestMethod.POST)
+	@RequestMapping(value = "/my_page", method = RequestMethod.POST)
 	private String init(Model model) {
 		// HttpSessionに情報格納している
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userName = auth.getName();
 		model.addAttribute("userName", userName);
-		return "/pages/mypage";//ちゃんと階層を指定すること
+		return "/pages/my_page";//ちゃんと階層を指定すること
 	}
 
 	//ログインページにアクセス

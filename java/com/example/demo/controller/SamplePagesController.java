@@ -16,9 +16,9 @@ public class SamplePagesController {
     }
 	
 	//2.マイページ 担当：高安
-	@GetMapping("/mypage")
+	@GetMapping("/my_page")
     public String Mypage() {
-    	return "pages/mypage.html";
+    	return "pages/my_page.html";
     }
 	
 	//3.モーダル画面 担当：山内
