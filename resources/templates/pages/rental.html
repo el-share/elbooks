@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="/js/rental.js"></script>
+<title>貸出リスト</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>タイトル</th>
+			<th>著者</th>
+			<th>カテゴリ</th>
+			<th>返却締切日</th>
+		</tr>
+		<tbody>
+			<tr th:each="loan : ${rentalList}" >
+				<td th:text="${loan.title}"></td>
+				<td th:text="${loan.category}"></td>
+				<td th:text="${loan.author}"></td>
+				<!-- <td  id = "day" th:text="${loan.plan_day}"th:value = "${loan.plan_day}"></td> -->
+				<td>
+					<input type="button" class="rental" id="returnid" th:name="${loan.plan_day}" th:value = "${loan.plan_day}">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
