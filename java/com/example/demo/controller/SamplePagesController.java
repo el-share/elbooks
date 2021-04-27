@@ -64,9 +64,9 @@ public class SamplePagesController {
     }
 	
 	//10.ヘッダー 担当：原
-	@GetMapping("/heder")
+	@GetMapping("/header")
     public String Heder() {
-    	return "pages/heder.html";
+    	return "pages/header.html";
     }
 
 	//11.お問い合わせ画面 担当：佐藤
