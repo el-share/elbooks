@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		// spring securityで無視するリクエストパスを設定 / **より下の階層は自由にアクセス可能
-		web.ignoring().antMatchers("/css/**","/images/**","/js/**","/scss/**");
+		web.ignoring().antMatchers("/css/**", "/images/**", "/js/**", "/scss/**");
 	}
 
 	//HttpSecurityの設定
@@ -39,9 +39,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-				.antMatchers("/").permitAll() // 認証なしでアクセス可能なパス
-				//				.antMatchers("/css/**", "/images/**", "/js/**", "/scss/**").permitAll() // 
-				.antMatchers("/admin/**").hasRole("ADMIN")// admin権限を持ったアカウントのみがアクセス可能(階層はまだ無し)
+				.antMatchers("/index").permitAll() // 認証なしでアクセス可能なパス
+				//.antMatchers("/css/**", "/images/**", "/js/**", "/scss/**").permitAll() // 
+				//.antMatchers("/admin/**").hasRole("ADMIN")// admin権限を持ったアカウントのみがアクセス可能(階層はまだ無し)
 				.anyRequest().authenticated()//それ以外は認証が必要
 				.and()
 				.formLogin()
@@ -65,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// 認証するユーザーをauthに設定する
 		auth.userDetailsService(userService)
-		 // 入力値をbcryptでハッシュ化した値でパスワード認証を行う
-		.passwordEncoder(passwordEncoder());
+				// 入力値をbcryptでハッシュ化した値でパスワード認証を行う
+				.passwordEncoder(passwordEncoder());
 	}
 }
