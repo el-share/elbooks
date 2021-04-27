@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.entity.LoginUser;
 import com.example.demo.entity.LoginUserDetailsImpl;
@@ -27,7 +26,7 @@ public class LoginController {
 	/**
 	 * user書籍一覧
 	 * */
-	@RequestMapping(value = "/my_page", method = RequestMethod.POST)
+	@RequestMapping(value = "/my_page")
 	private String init(@AuthenticationPrincipal LoginUserDetailsImpl user, Model model) {
 		// @AuthenticationPrincipal LoginUserDetailsImpl user はUserDetailsが実装されているクラスの情報を持ってこれるアノテーション
 		
