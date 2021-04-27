@@ -18,7 +18,6 @@ import com.example.demo.service.LoginUserDao;
 
 @Controller
 @RequestMapping("/pages")
-
 //mypageにアクセス
 public class LoginController {
 
