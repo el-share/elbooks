@@ -1,3 +1,4 @@
+//製作途中 大平
 package com.example.demo.conf;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,26 +27,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return bcpe;
 	}
 
-//		WebSecurityの設定
-		@Override
-		public void configure(WebSecurity web) throws Exception {
-			// spring securityで無視するリクエストパスを設定 / **より下の階層は自由にアクセス可能
-			web.ignoring().antMatchers("/css/**", "/images/**", "/js/**", "/scss/**");
-		}
+	//WebSecurityの設定
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		// spring securityで無視するリクエストパスを設定 / **より下の階層は自由にアクセス可能
+		web.ignoring().antMatchers("/css/**","/images/**","/js/**","/scss/**");
+	}
 
-	//	HttpSecurityの設定
+	//HttpSecurityの設定
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
 				.antMatchers("/").permitAll() // 認証なしでアクセス可能なパス
-//				.antMatchers("/css/**", "/images/**", "/js/**", "/scss/**").permitAll() // 
+				//				.antMatchers("/css/**", "/images/**", "/js/**", "/scss/**").permitAll() // 
 				.antMatchers("/admin/**").hasRole("ADMIN")// admin権限を持ったアカウントのみがアクセス可能(階層はまだ無し)
 				.anyRequest().authenticated()//それ以外は認証が必要
 				.and()
 				.formLogin()
 				.loginPage("/pages/login") // ログインのビュー
-				.loginProcessingUrl("/sign_in") //認証処理が実行される
+				.loginProcessingUrl("/sign_in") //AuthenticationConfigurationが暗黙のうちに呼ばれて認証処理が実行される
 				.usernameParameter("username")
 				.passwordParameter("pass")
 				.successForwardUrl("/pages/my_page")
@@ -59,9 +60,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 	}
 
-	//	AuthenticationManagerBuildeの設定
+	//AuthenticationManagerBuildeの設定(AuthenticationConfigurationのメソッドのオーバーライド？)
 	@Autowired
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+		// 認証するユーザーをauthに設定する
+		auth.userDetailsService(userService)
+		 // 入力値をbcryptでハッシュ化した値でパスワード認証を行う
+		.passwordEncoder(passwordEncoder());
 	}
 }

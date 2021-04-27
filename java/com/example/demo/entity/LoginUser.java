@@ -1,21 +1,41 @@
 package com.example.demo.entity;
 
-import org.springframework.lang.NonNull;
+import java.io.Serializable;
+import java.sql.Date;
 
 import lombok.Data;
 
 
 @Data
-public class LoginUser{
-    
-    @NonNull
+public class LoginUser  implements Serializable{
+
+
+	//    @NonNull
 	private int user_id;
 
-	@NonNull
+	//	@NonNull
 	private String user_name;
 
-	@NonNull
+	//	@NonNull
+	private String admin_mail;
+
+	//	@NonNull
 	private String pass;
 
+	//	@NonNull
+	private int admin_flg;
 
+	//	@NonNull
+	private Date join_day;
+
+	//	@NonNull
+	private Date entry_day;
+
+	//	@NonNull
+	private Date updatetime;
+
+	//	@NonNull
+	private int isdeleted;
+
+	
 }
