@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <title>ログイン</title>
@@ -19,20 +19,20 @@
     <img src="/images/elbook_logo.jpeg">
   </header>
 
-  <form class="contents-form">
+  <form class="contents-form"  th:action="@{/sign_in}" method="POST">
     <div class="item">
       <label class="item-label">ユーザー名またはメールアドレス</label><br>
-      <input type="text" name="name" autocomplete="name" class="form-input">
+      <input type="text" name="username" autocomplete="name" class="form-input">
     </div>
     <div class="item">
       <label class="item-label">パスワード</label><br>
-      <input type="password" name="password" autocomplete="current-password" class="form-input">
+      <input type="password" name="pass" autocomplete="current-password" class="form-input">
     </div>
     <div class="form-checkbox">
       <input type="checkbox">ログインを保存する
     </div>
     <div class="form-button">
-      <input class="form-button-login" type="button" value="ログイン" onclick="location.href='../pages/mypage.html'">
+      <input class="form-button-login" type="submit" value="ログイン" >
     </div>
   </form>
 </body>
