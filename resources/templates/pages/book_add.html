@@ -35,17 +35,19 @@
   </header>
 
   <p class="fas fa-book-open text1">書籍編集</p>
-  <form class="contents-form">
+  <form th:method="post" th:action="@{/books}" th:object="${book}" class="contents-form">
     <div class="item">
       <label class="item-label">書籍名</label><br>
-      <input type="text" name="name" autocomplete="name" class="form-input">
+      <input type="text" name="title" autocomplete="name" class="form-input">
     </div>
     <div class="item">
       <label class="item-label">著者名</label><br>
-      <input type="password" name="password" autocomplete="current-password" class="form-input">
+      <input type="text" name="author" autocomplete="current-password" class="form-input">
+
     </div>
     <p>カバー写真</p>
-    <input type="submit" value="ファイルを選択">選択されていません
+ <!--    <input type="submit" value="ファイルを選択">選択されていません -->
+    <input type="file" name="file" accept="image/*">
     <div class="form-button">
       <input class="form-button-login" type="submit" value="登録する">
     </div>
