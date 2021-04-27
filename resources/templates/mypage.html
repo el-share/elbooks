@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/mypage.css}" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="mypage.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<header>
+	<h1>ELBOOK</h1>
+
+	<!-- 各画面遷移 -->
+        <div class="selectdiv">
+            <label>
+                <select>
+                    <option selected> アカウント&リスト </option>
+                    <option value="">ユーザー新規登録</option>
+                    <option value="">書籍新規登録</option>
+                    <option value="">ユーザー一覧</option>
+                    <option value="">お問い合わせ</option>
+                    <option value="">ログアウト</option>
+                </select>
+            </label>
+          </div>
+          <nav>
+                <ul>
+                    <li><a href="">貸出リスト</a></li>
+                    <li><a href="">お問い合わせ</a></li>
+                </ul>
+          </nav>
+</header>
+<main>
+
+<!-- 検索 -->
+<form th:action="@{/myseach}" th:object="${book}" method="POST">
+	<select name="select1" onchange="change(this)">
+		<option>カテゴリ</option>
+		<option value="ビジネス書">ビジネス書</option>
+		<option value="参考書">参考書</option>
+		<option value="漫画">漫画</option>
+		<option value="自己啓発">自己啓発</option>
+	</select>
+	<input type="search" name="title" size="30" placeholder="書籍名or著者名で検索">
+	<input type="submit" value="🔍">
+</form>
+
+
+
+<div class="book">
+	<div class="head">
+    	<p>📖書籍一覧（全ての書籍）</p>
+    </div>
+
+	<!-- 本一覧表示 -->
+	<div class="grid">
+	<!-- 左のbookがループの指定/右がコントローラー -->
+	    <div class="item" th:each="book:${books}">
+	     <!--  <img th:src="@{images/{bookId}.jpg(bookId=*{book.bookId})}"> -->
+	      <p th:text="'書籍名:'+${book.title}"></p>
+	      <!-- <a class="booklink" th:href="@{books/{bookId}/{id}(bookId)=*{book.bookId}, id=*{user.id})}"></a> -->
+	      <p th:text="'著者名:'+${book.author}"></p>
+		</div>
+	</div>
+
+	<!-- タイトル検索 -->
+	<div class="grid">
+	<!-- 左のbookがループの指定/右がコントローラー -->
+	    <div class="item" th:each="book:${seach}">
+	     <!--  <img th:src="@{images/{bookId}.jpg(bookId=*{book.bookId})}"> -->
+	      <p th:text="'書籍名:'+${book.title}"></p>
+	      <!-- <a class="booklink" th:href="@{books/{bookId}/{id}(bookId)=*{book.bookId}, id=*{user.id})}"></a> -->
+	      <p th:text="'著者名:'+${book.author}"></p>
+		</div>
+	</div>
+
+	<!-- 著者検索 -->
+	<div class="grid">
+	<!-- 左のbookがループの指定/右がコントローラー -->
+	    <div class="item" th:each="book:${seachs}">
+	     <!--  <img th:src="@{images/{bookId}.jpg(bookId=*{book.bookId})}"> -->
+	      <p th:text="'書籍名:'+${book.title}"></p>
+	      <!-- <a class="booklink" th:href="@{books/{bookId}/{id}(bookId)=*{book.bookId}, id=*{user.id})}"></a> -->
+	      <p th:text="'著者名:'+${book.author}"></p>
+		</div>
+	</div>
+</div>
+</main>
+</body>
+</html>
