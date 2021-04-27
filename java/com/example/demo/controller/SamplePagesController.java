@@ -46,22 +46,22 @@ public class SamplePagesController {
     }
 
 	//7.ユーザー登録画面 担当：大平
-	@GetMapping("/user_register")
-    public String UserRegister() {
-    	return "pages/user_register.html";
-    }
+//	@GetMapping("/user_register")
+//    public String UserRegister() {
+//    	return "pages/user_register.html";
+//    }
 
 	//8.ユーザー編集画面 担当：大平
-	@GetMapping("/user_edit")
-    public String UserEdit() {
-    	return "pages/user_edit.html";
-    }
+//	@GetMapping("/user_edit")
+//    public String UserEdit() {
+//    	return "pages/user_edit.html";
+//    }
 
 	//9.ユーザー一覧画面 担当：原
-	@GetMapping("/user_list")
-    public String UserList() {
-    	return "pages/user_list.html";
-    }
+//	@GetMapping("/user_list")
+//    public String UserList() {
+//    	return "pages/user_list.html";
+//    }
 
 	//10.ヘッダー 担当：原
 	@GetMapping("/heder")
