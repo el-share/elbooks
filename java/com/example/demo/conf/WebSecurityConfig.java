@@ -1,3 +1,4 @@
+
 //製作途中 大平
 package com.example.demo.conf;
 
@@ -14,6 +15,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.example.demo.service.UserService;
 
+//@Profile("production") // これ
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -49,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.loginProcessingUrl("/sign_in") //AuthenticationConfigurationが暗黙のうちに呼ばれて認証処理が実行される
 				.usernameParameter("username")
 				.passwordParameter("pass")
-				.successForwardUrl("/pages/my_page")
+				.successForwardUrl("/mypage")
 				.failureUrl("/pages/login?error")
 				.permitAll()
 				.and()

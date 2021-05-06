@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.entity.Book_t;
+import com.example.demo.entity.common.Book;
 import com.example.demo.service.BooklistService;
 
 @Controller
@@ -24,7 +24,7 @@ public class BooklistController {
 	}
 
 	@PostMapping("/myseach")
-	public String findOne(@ModelAttribute Book_t book, Model model) {
+	public String findOne(@ModelAttribute Book book, Model model) {
 
 		String title = book.getTitle();
 

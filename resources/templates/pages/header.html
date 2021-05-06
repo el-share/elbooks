@@ -1,35 +1,59 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ヘッダー画面</title>
-    <link rel="stylesheet" href="/css/heder.css">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:fragment="meta_header(title,links,scripts)">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- (2)共通で読み込むCSS/JS -->
+<link rel="stylesheet" href="/css/header.css">
+
+<!-- (3)タイトルのフォーマット -->
+<title th:text="${title}+' | sample app'">各ページタイトル | sample app</title>
+<title>ヘッダー画面</title>
+
+<!-- (4)各View固有で読み込むもの -->
+<th:block th:replace="${links} ?: _" />
+<th:block th:replace="${scripts} ?: _" />
 </head>
 <body>
-    <header>
+	<header th:fragment="header">
 
-        <h1>ELBOOK</h1>
+		<h1>ELBOOK</h1>
 
-        <div class="selectdiv">
-            <label>
-                <select name="select" onChange="location.href=value;">
-                    <option selected> アカウント&リスト </option>
-                    <option value="">ユーザー情報変更</option>
-                    <option value="">ログアウト</option>
-                </select>
-            </label>
-          </div>
+		<div class="selectdiv">
+			<label> <select name="select" onChange="location.href=value;">
+					<option selected>アカウント&リスト</option>
+					<option value="">ユーザー情報変更</option>
+					<option
+						th:if="${#authentication.principal.LoginUser.admin_flg == 1}"
+						value="">ユーザー新規追加</option>
+					
+					<option
+						th:if="${#authentication.principal.LoginUser.admin_flg == 1}"
+						value="">書籍新規登録</option>
+						
+					<option
+						th:if="${#authentication.principal.LoginUser.admin_flg == 1}"
+						value="/user/list">ユーザー一覧</option>
+					<option
+						th:if="${#authentication.principal.LoginUser.admin_flg == 1}"
+						value="/sample_pages/contact_mgt">お問い合わせ一覧</option>
+						
+					<option value="/logout">ログアウト</option>
+			</select>
+			</label>
+		</div>
 
-          <nav>
-                <ul>
-                    <li><a href="">貸出リスト</a></li>
-                    <li><a href="">お問い合わせ</a></li>
-                </ul>
-          </nav>
+		<nav>
+			<ul>
+				<li><a href="">貸出リスト</a></li>
+				<li><a href="">お問い合わせ</a></li>
+			</ul>
+		</nav>
 
-    </header>
+	</header>
 
 
 </body>

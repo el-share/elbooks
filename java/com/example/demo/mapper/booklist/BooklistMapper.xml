@@ -6,7 +6,7 @@
 
 <mapper namespace="com.example.demo.mapper.booklist.BooklistMapper">
 
-	<resultMap id="Base_Result_Map" type="com.example.demo.entity.Book_t">
+	<resultMap id="Base_Result_Map" type="com.example.demo.entity.common.Book">
 		<id column="id" property="id" jdbcType="INTEGER"/>
 		<result column="title" property="title" jdbcType="VARCHAR"/>
 	</resultMap>
@@ -17,12 +17,12 @@
 	</select>
 
 	<!-- 書籍名で検索 -->
-	<select id="findtitle" resultType="com.example.demo.entity.Book_t">
+	<select id="findtitle" resultType="com.example.demo.entity.common.Book">
 		select * from m_book where title like CONCAT('%', #{title}, '%')
 	</select>
 
 	<!-- 著者名で検索 -->
-	<select id="findauthor" resultType="com.example.demo.entity.Book_t">
+	<select id="findauthor" resultType="com.example.demo.entity.common.Book">
 		select * from m_book where author like CONCAT('%', #{title}, '%')
 	</select>
 

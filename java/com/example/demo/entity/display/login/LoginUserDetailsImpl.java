@@ -1,6 +1,6 @@
 //製作途中 大平
 
-package com.example.demo.entity;
+package com.example.demo.entity.display.login;
 
 import java.util.ArrayList;
 import java.util.Collection;

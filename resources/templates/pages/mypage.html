@@ -1,18 +1,18 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head th:replace="/pages/header :: meta_header('Document',~{::link},~{::script})">
     <link th:href="@{/css/mypage.css}" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="mypage.js"></script>
-    <title>Document</title>
 </head>
+
 <body>
-<header>
+<header th:replace=" /pages/header :: header">
+</header>
+<!-- <header>
 	<h1>ELBOOK</h1>
 
-	<!-- 各画面遷移 -->
+	各画面遷移
         <div class="selectdiv">
             <label>
                 <select>
@@ -31,7 +31,7 @@
                     <li><a href="">お問い合わせ</a></li>
                 </ul>
           </nav>
-</header>
+</header> -->
 <main>
 
 <!-- 検索 -->

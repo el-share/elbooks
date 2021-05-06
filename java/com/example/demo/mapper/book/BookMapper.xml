@@ -3,9 +3,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.book.BookMapper">
 
-	<resultMap id="Base_Result_Map" type="com.example.demo.entity.Book">
-	        <id column="book_id" property="bookId" jdbcType="INTEGER"/>
-	        <id column="max_num" property="maxNum" jdbcType="INTEGER"/>
+	<resultMap id="Base_Result_Map" type="com.example.demo.entity.common.Book">
+	        <id column="book_id" property="book_id" jdbcType="INTEGER"/>
+	        <id column="max_num" property="max_num" jdbcType="INTEGER"/>
 	        <!-- <result column="user_name" property="" jdbcType="VARCHAR"/> -->
     </resultMap>
 
@@ -23,15 +23,15 @@
   	</select>
 
  	<select id="findOne" resultMap="Base_Result_Map">
-		select * from m_book  where book_id = #{bookId}
+		select * from m_book  where book_id = #{book_id}
   	</select>
 
  	<update id="delete">
-  		update m_book set isdeleted = 1 where book_id = #{bookId}
+  		update m_book set isdeleted = 1 where book_id = #{book_id}
   	</update>
 
    <update id="update">
-  	update m_book set title = #{title}, author =#{author} where book_id = #{bookId}
+  	update m_book set title = #{title}, author =#{author} where book_id = #{book_id}
   </update>
 
 

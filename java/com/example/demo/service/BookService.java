@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.entity.Book;
+import com.example.demo.entity.common.Book;
 import com.example.demo.mapper.book.BookMapper;
 
 

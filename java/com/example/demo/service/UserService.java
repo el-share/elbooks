@@ -9,8 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.entity.LoginUser;
-import com.example.demo.entity.LoginUserDetailsImpl;
+import com.example.demo.entity.display.login.LoginUser;
+import com.example.demo.entity.display.login.LoginUserDetailsImpl;
 
 /**
  * UserDetailsServiceの実装クラス

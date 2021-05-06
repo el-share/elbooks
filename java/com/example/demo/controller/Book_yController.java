@@ -1,3 +1,5 @@
+//レンタルモーダル,返却モーダルの表示
+
 package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.mapper.display.DisplayMapper;
 
-
-
 @Controller
 @RequestMapping("/")
 public class Book_yController {
@@ -17,6 +17,7 @@ public class Book_yController {
 	@Autowired
 	DisplayMapper displayMapper;
 
+	//レンタルモーダル,返却モーダルの表示
 	@GetMapping("/book")
     public String Modal(Model model) {
 		model.addAttribute("bookList",displayMapper.findBook());

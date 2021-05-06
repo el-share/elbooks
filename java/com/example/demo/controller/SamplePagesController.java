@@ -24,25 +24,25 @@ public class SamplePagesController {
 	//3.モーダル画面 担当：山内
 	@GetMapping("/modal")
     public String Modal() {
-    	return "pages/book.html";
+    	return "pages/test/book.html";
     }
 	
 	//4.貸出リスト 担当：新井
 	@GetMapping("/book_history")
     public String BookHistory() {
-    	return "pages/book_history.html";
+    	return "pages/test/book_history.html";
     }
 	
 	//5.書籍登録画面 担当：新井
 	@GetMapping("/book_add")
     public String BookAdd() {
-    	return "pages/book_add.html";
+    	return "pages/test/book_add.html";
     }
 	
 	//6.書籍編集画面 担当：大平
 	@GetMapping("/book_edit")
     public String bookedit() {
-    	return "pages/book_edit.html";
+    	return "pages/test/book_edit.html";
     }
 	
 	//7.ユーザー登録画面 担当：大平
@@ -72,13 +72,13 @@ public class SamplePagesController {
 	//11.お問い合わせ画面 担当：佐藤
 	@GetMapping("/contact")
     public String ContactUs() {
-    	return "pages/contact.html";
+    	return "pages/test/contact.html";
     }
 
 	//12.お問い合わせ一覧画面 担当：佐藤
 	@GetMapping("/contact_mgt")
     public String ContactUsMtg() {
-    	return "pages/contact_mgt.html";
+    	return "pages/test/contact_mgt.html";
     }
 
 }

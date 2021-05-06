@@ -3,15 +3,15 @@
 
 <mapper namespace="com.example.demo.mapper.display.DisplayMapper">
 
-<select id="findBook" resultType="com.example.demo.entity.Book_y">
+<select id="findBook" resultType="com.example.demo.entity.common.Book">
    SELECT * FROM m_book;
 </select>
 
-<select id="findUser" resultType="com.example.demo.entity.User">
+<select id="findUser" resultType="com.example.demo.entity.common.User">
    SELECT * FROM m_user where isdeleted = 0;
 </select>
 
-<select id="findByLoanUserId" resultType="com.example.demo.entity.Loan">
+<select id="findByLoanUserId" resultType="com.example.demo.entity.common.Loan">
     SELECT t_loan.user_id,t_loan.book_id,m_book.title,m_category.category,m_book.author,DATE_FORMAT(plan_day, '%Y/%m/%d')plan_day
 	FROM t_loan
 	JOIN m_user
