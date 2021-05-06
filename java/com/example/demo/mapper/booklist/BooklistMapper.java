@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.demo.entity.Book_t;
+import com.example.demo.entity.common.Book;
 
 
 
@@ -14,12 +14,12 @@ import com.example.demo.entity.Book_t;
 public interface BooklistMapper {
 
 //	本一覧表示
-	List<Book_t> findAll();
+	List<Book> findAll();
 
 //	書籍名で検索
-	List<Book_t> findtitle(String title);
+	List<Book> findtitle(String title);
 
 //	著者名で検索
-	List<Book_t> findauthor(String title);
+	List<Book> findauthor(String title);
 
 }

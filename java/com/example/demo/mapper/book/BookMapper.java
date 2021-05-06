@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.entity.Book;
+import com.example.demo.entity.common.Book;
 
 @Mapper
 @Repository

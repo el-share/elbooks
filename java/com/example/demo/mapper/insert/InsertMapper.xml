@@ -3,7 +3,7 @@
 
 <mapper namespace="com.example.demo.mapper.insert.InsertMapper">
 
-   <insert id="insertUser" parameterType = "com.example.demo.entity.User">
+   <insert id="insertUser" parameterType = "com.example.demo.entity.common.User">
       insert into m_user(user_name,mail,pass)values(#{user_name},#{mail},#{pass});
    </insert>
 

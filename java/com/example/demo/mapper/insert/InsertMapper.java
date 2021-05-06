@@ -2,7 +2,7 @@ package com.example.demo.mapper.insert;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.demo.entity.User;
+import com.example.demo.entity.common.User;
 
 
 

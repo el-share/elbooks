@@ -1,3 +1,6 @@
+//担当：原さん
+//書籍登録フォームの表示
+
 package com.example.demo.controller;
 
 import java.util.List;
@@ -11,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.entity.Book;
+import com.example.demo.entity.common.Book;
 import com.example.demo.service.BookService;
 
 @Controller

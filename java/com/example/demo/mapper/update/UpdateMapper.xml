@@ -4,13 +4,13 @@
 
 <mapper namespace="com.example.demo.mapper.update.UpdateMapper">
 
-   <update id="updateUser" parameterType = "com.example.demo.entity.User">
+   <update id="updateUser" parameterType = "com.example.demo.entity.common.User">
    		UPDATE m_user
 		SET user_name = #{user_name},mail = #{mail},pass = #{pass}
 		WHERE m_user.user_id = #{user_id};
    </update>
 
-	<update id="deleteUser" parameterType = "com.example.demo.entity.User">
+	<update id="deleteUser" parameterType = "com.example.demo.entity.common.User">
    		UPDATE m_user
 		SET isdeleted = 1
 		WHERE m_user.user_id = #{user_id};
