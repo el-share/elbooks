@@ -48,20 +48,49 @@
 
 
 .grid {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-  .item {
-    border-radius: 10px;
-    background: #edf;
-    padding: 15px;
-    text-align: center;
-  }
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  p {
-    text-align: left;
-  }
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.item {
+	 position:relative;
+  border-radius: 10px;
+ background: #edf;
+  padding: 15px;
+  text-align: center;
+}
+
+
+.bookimg{
+	margin-left:12px;
+	width:150px;
+	height:210px;
+}
+
+.book{
+	width:100%;
+	height:100%;
+
+}
+
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+.booklink{
+	 display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+p {
+  text-align: left;
+  font-size:14px;
+
+}
+
+
+

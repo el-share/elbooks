@@ -57,14 +57,14 @@ public class BookController {
 	@GetMapping("/{bookId}/update")
 	public String update(@ModelAttribute Book book) {
 		bookService.update(book);
-			return "redirect:/books/pages/mypage";
+			return "redirect:/books/mypage";
 	}
 
 //書籍の削除を行う
 	@GetMapping("/{bookId}/delete")
-	public String Delete(@PathVariable Long bookId) {
+	public String delete(@PathVariable Long bookId) {
 		bookService.delete(bookId);
-			return "redirect:/books/pages/mypage";
+			return "redirect:/books/mypage";
 	}
 
 }

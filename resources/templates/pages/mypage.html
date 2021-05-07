@@ -167,6 +167,9 @@ $(".chosen-select").chosen()
   <img th:src="@{/images/{bookId}.jpg(bookId=*{book.bookId})}">
 
     <p th:text="'書籍名：'+${book.title}"></p>
+    	<a class="booklink"
+    	 th:href="@{/books/ed/{bookId} (bookId=*{book.bookId}) }"></a>
+
 
      <p th:text="'著者名：'+${book.author}"></p>
   </div>

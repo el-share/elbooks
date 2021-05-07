@@ -39,12 +39,12 @@ public class SamplePagesController {
     	return "pages/bookAdd.html";
     }
 
-	//6.書籍編集画面 担当：大平
-	@GetMapping("/book_edit")
-    public String bookedit() {
-    	return "pages/book_edit.html";
-    }
-
+	/*	//6.書籍編集画面 担当：大平
+		@GetMapping("/book_edit")
+	public String bookedit() {
+		return "pages/book_edit.html";
+	}
+	*/
 	//7.ユーザー登録画面 担当：大平
 	@GetMapping("/user_register")
     public String UserRegister() {
