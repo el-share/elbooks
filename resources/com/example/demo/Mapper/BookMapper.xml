@@ -12,8 +12,12 @@
   	VALUES (#{book_id}, #{user_id}, #{plan_day})
   </insert>
 
+  <select id="maxnumSelect" resultType="com.example.demo.repository.Book">
+  	SELECT max_num FROM m_book WHERE book_id = #{book_id};
+  </select>
+
   <update id="update" parameterType="com.example.demo.repository.Book">
-  	UPDATE m_book SET max_num = 0 WHERE book_id = #{book_id};
+  	UPDATE m_book SET max_num = #{max_num} WHERE book_id = #{book_id};
   </update>
 
   <select id="bookSelect" resultType="com.example.demo.repository.Book">
@@ -22,7 +26,7 @@
 
 <!-- 貸出中書籍リスト -->
 	<select id="returnSelect" resultType="com.example.demo.repository.LendingBook">
-		SELECT t_loan.book_id, t_loan.user_id, m_book.title,m_category.category,m_book.author,plan_day
+		SELECT t_loan.book_id, t_loan.user_id, m_book.title,m_category.category,m_book.author,plan_day,m_book.max_num
 		FROM t_loan
 		JOIN m_user
 		ON t_loan.user_id = m_user.user_id
@@ -36,12 +40,13 @@
 <!-- t_historyに登録 書籍返却したよ〜履歴 -->
 	<insert id="returnInsert" parameterType="com.example.demo.repository.History">
 		INSERT INTO t_history (book_id, user_id, loan_day)
-		VALUES (#{book_id}, #{user_id}, #{loan_day});
+		VALUES (#{book_id}, 1, "2021-04-30");
 	</insert>
 
 <!-- t_loanから返却した書籍のデータを削除 -->
 	<delete id="returnDelete" parameterType="com.example.demo.repository.LendingBook">
-		DELETE FROM t_loan WHERE book_id = 1 AND user_id = 1;
+		DELETE FROM t_loan WHERE t_loan.book_id = #{book_id} AND t_loan.user_id = 1;
 	</delete>
+
 
 </mapper>

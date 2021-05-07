@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class Book {
 	private int book_id;
+	private int user_id;
 	private String title;
 	private String author;
 	private int category_id;
@@ -13,12 +14,14 @@ public class Book {
 	private String updatetime;
 	private int isdeleted;
 	private int page;
+	private String plan_day;
 
-	public int getMax_num() {
-		return max_num;
+	public int getBook_id() {
+		return book_id;
 	}
 
-	public void setMax_num(int max_num) {
-		this.max_num = max_num;
+	public void setBook_id(int book_id) {
+		this.book_id = book_id;
 	}
+
 }
