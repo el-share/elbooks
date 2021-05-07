@@ -13,5 +13,4 @@ public interface DisplayMapper {
 	List<Book>findBook();
 	List<User>findUser();
 	List<Loan>findByLoanUserId (int id);
-
 }

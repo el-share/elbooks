@@ -12,7 +12,7 @@
 </select>
 
 <select id="findByLoanUserId" resultType="com.example.demo.model.Loan">
-    SELECT t_loan.user_id,t_loan.book_id,m_book.title,m_category.category,m_book.author,DATE_FORMAT(plan_day, '%Y/%m/%d')plan_day
+    SELECT t_loan.user_id,t_loan.book_id,m_book.title,m_category.category,m_book.author,m_book.max_num,DATE_FORMAT(plan_day, '%Y/%m/%d')plan_day
 	FROM t_loan
 	JOIN m_user
 	ON t_loan.user_id = m_user.user_id

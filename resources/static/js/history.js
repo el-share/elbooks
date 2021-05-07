@@ -1,3 +1,5 @@
+
+
 let now_date = new Date();
 
 const comparison_date = now_date.getFullYear() + "/" + (now_date.getMonth()+1)+ "/" + (now_date.getDate() - 2) ;
@@ -15,15 +17,24 @@ function comparison(plan,idname){
     var obj = document.getElementById(idname);
         obj.style.backgroundColor = '#fff450';
     }
+    console.log(idname);
+
 
 }
 
 window.onload = function() {
     const elements = document.getElementsByClassName('rental');
-    let i = 0;
     console.log(elements.length)
     console.log(elements)
 	for (let step = 0; step < elements.length; step++){
     comparison(elements[step].name,elements[step].id);
+
 	}
+}
+
+
+
+
+function returnModalButton(event) {
+	console.log(event.target.id);
 }

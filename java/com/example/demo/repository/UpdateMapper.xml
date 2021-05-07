@@ -16,4 +16,17 @@
 		WHERE m_user.user_id = #{user_id};
    </update>
 
+	<!-- 返却時に在庫数を戻す -->
+	<select id="findByHistoryBook" resultType="com.example.demo.model.Book">
+   		SELECT max_num
+   		FROM m_book
+   		WHERE m_book.book_id = #{book_id};
+	</select>
+
+	<update id="updateBook" parameterType = "com.example.demo.model.Book">
+   		UPDATE m_book
+		SET max_num = #{max_num}
+		WHERE m_book.book_id = #{book_id};
+   </update>
+
 </mapper>

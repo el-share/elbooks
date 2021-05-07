@@ -3,8 +3,13 @@
 
 <mapper namespace="com.example.demo.repository.InsertMapper">
 
-   <insert id="insertUser" parameterType = "com.example.demo.model.User">
-      insert into m_user(user_name,mail,pass)values(#{user_name},#{mail},#{pass});
-   </insert>
+   	<insert id="insertUser" parameterType = "com.example.demo.model.User">
+      insert into m_user(user_name,mail,pass)values(#{user_name},#{mail},#{pass})
+      ON DUPLICATE KEY UPDATE mail = #{mail};
+   	</insert>
+
+	<insert id="insertHistory" parameterType = "com.example.demo.model.History">
+	  insert into t_history(t_history.book_id,t_history.user_id,t_history.loan_day)values(#{t_history.book_id},1,"2022-05-04");
+	</insert>
 
 </mapper>

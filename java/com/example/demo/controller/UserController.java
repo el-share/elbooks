@@ -25,18 +25,21 @@ public class UserController {
 	@Autowired
 	UpdateMapper updateMapper;
 
+	// ユーザーの一覧表示
 	@GetMapping("/list")
 	public String users(@ModelAttribute User user,Model model) {
 		model.addAttribute("userList",displayMapper.findUser());
 		return "pages/user_list";
 	}
 
+	// ユーザーの登録処理
 	@PostMapping("/add")
-	public String userAdd(@ModelAttribute User user) {
+	public String userAdd(@ModelAttribute User user,@RequestParam String mail) {
 		insertMapper.insertUser(user);
 		return "redirect:/user/list";
 	}
 
+	// ユーザーの編集処理
 	@PostMapping("/edit")
 	public String userEdit(@ModelAttribute User user,@RequestParam int userId) {
 		user.setUser_id(userId);
@@ -44,6 +47,7 @@ public class UserController {
 		return "redirect:/user/list";
 	}
 
+	// ユーザーの削除処理
 	@PostMapping("/delete")
 	public String userDrop(@ModelAttribute User user,@RequestParam int userId) {
 		updateMapper.deleteUser(userId);

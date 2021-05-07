@@ -7,4 +7,5 @@ import com.example.demo.model.User;
 @Mapper
 public interface InsertMapper {
 	void insertUser(User user);
+	void insertHistory(int id);
 }

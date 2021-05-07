@@ -10,52 +10,90 @@
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
     crossorigin="anonymous">
   </script>
-  <script type="text/javascript" src="/js/history.js"></script>
+ <!--  <script type="text/javascript" src="/js/history.js"></script> -->
+	<link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
+
+<script type="text/javascript">
+
+let now_date = new Date();
+
+const comparison_date = now_date.getFullYear() + "/" + (now_date.getMonth()+1)+ "/" + (now_date.getDate() - 2) ;
+
+console.log("きょうの日付"+comparison_date);
+
+function comparison(plan,idname){
+    console.log("今日の日付" + comparison_date + "比較日付：" + plan);
+    if ( new Date(comparison_date) > new Date(plan)) {
+        var obj = document.getElementById(idname);
+        obj.style.backgroundColor = '#ff2020';
+	console.log(new Date(comparison_date) > new Date(plan));
+    }else{
+    console.log(new Date(comparison_date) > new Date(plan));
+    var obj = document.getElementById(idname);
+        obj.style.backgroundColor = '#fff450';
+    }
+    console.log(idname);
+
+}
+
+window.onload = function() {
+    const elements = document.getElementsByClassName('rental');
+    console.log(elements.length)
+    console.log(elements)
+	for (let step = 0; step < elements.length; step++){
+    comparison(elements[step].name,elements[step].id);
+
+	}
+}
+
+function returnModalButton(event) {
+	console.log(event.target.id);
+	$('#rbid').val(event.target.id);
+}
+
+</script>
 
 <body>
   <header>
     <img src="../images/elbook_logo.jpeg">
-    <nav class="header-nav">
-      <ul class="menu">
-        <li><a class="header-menu" href="#">貸出リスト</a></li>
-        <li><a class="header-menu" href="#">お問い合わせ</a></li>
-        <li class="header-dropdown">
-          <a class="header-menu" href="#">アカウント&リスト▼</a>
-          <ul>
-            <li><a href="#">ユーザー新規追加</a></li>
-            <li><a href="#">ユーザー情報変更</a></li>
-            <li><a href="#">書籍新規登録</a></li>
-            <li><a href="#">ユーザー一覧</a></li>
-            <li><a href="#">お問い合わせ一覧</a></li>
-            <li><button>ログアウト</button></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
+    <nav class="header-nav"></nav>
   </header>
 
-
   <p class="fas fa-book-open text1">貸出リスト一覧</p>
+
   <table class="table-separate">
+
     <tr th:each="loan : ${rentalList}">
+
 		<td class="table-td">
 			<img src = "../images/elbooks_img2.jpeg">
 			<p th:text="${loan.title}"></p>
 			<p th:text="${loan.category}"></p>
 			<p th:text="${loan.author}"></p>
-			<input type="button" class="rental" th:id="${loan.book_id}" th:name="${loan.plan_day}" th:value = "${loan.plan_day}">
+			<!-- <p th:text="${loan.max_num}"></p> -->
+		<input type="button" class="rental" onclick="returnModalButton(event)" th:id="${loan.book_id}" th:name="${loan.plan_day}" th:value = "${loan.plan_day}" data-toggle = "modal" data-target = "#returnModal">
+
 		</td>
-      <!-- <td class="table-td"><img src="../images/elbooks_img2.jpeg"><br>HTML&CSSとWebデザイン<br><button>返却日 2021年○月○日</button>
-      </td>
-      <td class="table-td"><img src="../images/elbooks_img2.jpeg"><br>HTML&CSSとWebデザイン<br><button>返却日 2021年○月○日</button>
-      </td>
-      <td class="table-td"><img src="../images/elbooks_img2.jpeg"><br>HTML&CSSとWebデザイン<br><button>返却日 2021年○月○日</button>
-      </td>
-      <td class="table-td"><img src="../images/elbooks_img2.jpeg"><br>HTML&CSSとWebデザイン<br><button>返却日 2021年○月○日</button>
-      </td> -->
-    </tr>
+
+	</tr>
+
   </table>
+
+	<div id="returnModal" class="modal fade"  tabindex="-1" role="dialog"aria-labelledby="Modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+    				<form th:action="@{/return}"method="post">
+						<button type = "submit" id="rbid" name = "b_id" th:value = "${loan.book_id}">返却する</button>
+ 					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 
 </html>

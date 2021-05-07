@@ -12,4 +12,5 @@ public class Loan {
 	private String title;
 	private String category;
 	private String author;
+	private String max_num;
 }

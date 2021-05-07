@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.repository.DeleteMapper">
+
+	<delete id="deleteLoan" parameterType="com.example.demo.model.Loan">
+		DELETE FROM t_loan WHERE book_id = #{book_id} AND user_id = #{user_id};
+	</delete>
+
+</mapper>

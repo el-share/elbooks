@@ -23,7 +23,6 @@ $(document).ready(function(){
 		let td_user_name = $(this).children('td')[1].innerText;
 		let td_user_mail = $(this).children('td')[2].innerText;
 
-
 		$('#userId').val(td_user_id);
 		$('#deleteId').val(td_user_id);
 
@@ -89,15 +88,15 @@ $(document).ready(function(){
 						<div class="Form-Item">
 							<div class="inline-block">
             					<label>ユーザー名<span class="">※必須</span></label>
-            					<input class="Form-input-Item" type="text" name="first-name" th:field="*{user_name}" required>
+            					<input class="Form-input-Item" type="text" th:field="*{user_name}" required>
         					</div>
         					<div class="inline-block">
             					<label>メールアドレス<span class="">※必須</span></label>
-            					<input class="Form-input-Item" type="email" name="first-name" th:field="*{mail}" required>
+            					<input class="Form-input-Item" name = "mail" type="email" th:field="*{mail}" required>
         					</div>
         					<div class="inline-block">
             					<label>パスワード<span class="">※必須</span></label>
-            					<input class="Form-input-ItemEntry" type="password" name="first-name" th:field="*{pass}" required>
+            					<input class="Form-input-ItemEntry" type="password" th:field="*{pass}" required>
         					</div>
         					<div class="inline-block button">
             					<button class="Entry-Button">送信する</button>
@@ -122,15 +121,15 @@ $(document).ready(function(){
 						<div class="Form-Item">
 							<div class="inline-block">
             					<label>ユーザー名<span class="">※必須</span></label>
-            					<input class="Form-input-Item" type="text" name="first-name" th:field="*{user_name}" required>
+            					<input class="Form-input-Item" type="text" th:field="*{user_name}" required>
         					</div>
         					<div class="inline-block">
             					<label>メールアドレス<span class="">※必須</span></label>
-            					<input class="Form-input-Item" type="email" name="first-name" th:field="*{mail}"  required>
+            					<input class="Form-input-Item" type="email"  th:field="*{mail}"  required>
         					</div>
         					<div class="inline-block">
             					<label>パスワード<span class="">※必須</span></label>
-            					<input class="Form-input-Item" type="password" name="first-name" th:field="*{pass}"  required>
+            					<input class="Form-input-Item" type="password"  th:field="*{pass}"  required>
         					</div>
         					<div class="inline-block button">
         						<input type="hidden" id="userId" name = "userId" th:value="${user.user_id}">
