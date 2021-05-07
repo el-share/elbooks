@@ -19,14 +19,14 @@
     <div class="Form-Item">
         <div class="inline-block">
 		    <label>名前</label><br>
-		    <input class="Form-input-Item" type="text" name="name" maxlength="20" value="" > 
+		    <input class="Form-input-Item" type="text" name="name" maxlength="20" value="" >
         </div>
         <div class="inline-block">
             <label>メールアドレス</label><br>
-            <input class="Form-input-Item" type="text" name="email" maxlength="50" value="" >     
+            <input class="Form-input-Item" type="text" name="email" maxlength="50" value="" >
         </div>
-    
-        <div class="inline-block2">
+		 <form th:action="@{/contactadd}" th:object="${contact}" method="POST">
+        	<div class="inline-block2">
 		    <label>お問い合わせカテゴリ</label><br>
             <div class="ipselect" required>
 		    <select class="Form-select-Item" type="text" name="Category">
@@ -35,21 +35,18 @@
                 <option value="c">借りたい本がずっと借りられたままになっている</option>
                 <option value="d">本をなくしてしまった</option>
                 <option value="e">本がボロボロになってしまった・ボロボロになっている</option>
-                <option value="f">原くんに一言物申したい</option>                                
+                <option value="f">原くんに一言物申したい</option>
                 <option value="z">その他</option>
             </select>
             </div>
-	    </div>
+	    	</div>
 
         <div class="inline-block2">
 		    <label>お問い合わせ内容</label><br>
-            <textarea type="text" class="Form-Item-Textarea"  rows="8" cols="40"></textarea>
-	    </div>
-
-        <div class="inline-block2">
-            <input type="submit"class="Send-Button" value="送信する"></submit>
+            <textarea name="inquiry_contents" class="Form-Item-Textarea"  rows="8" cols="40"></textarea>
+            <input type="submit"class="Send-Button" value="送信する">
         </div>
+        </form>
     </div>
-
 </body>
 </html>
