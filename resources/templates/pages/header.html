@@ -26,7 +26,7 @@
 			<label> <select name="select" onChange="location.href=value;">
 					<option selected>アカウント&リスト</option>
 					<option value="">ユーザー情報変更</option>
-					<!-- <option
+					 <option
 						th:if="${#authentication.principal.LoginUser.admin_flg == 1}"
 						value="">ユーザー新規追加</option>
 
@@ -36,9 +36,9 @@
 
 					<option
 						th:if="${#authentication.principal.LoginUser.admin_flg == 1}"
-						value="/user/list">ユーザー一覧</option> -->
+						value="/user/list">ユーザー一覧</option> 
 					<option
-						th:value="@{/contactUs_mgt}">お問い合わせ一覧だよ</option>
+						th:value="@{/contactUs_mgt}">お問い合わせ一覧</option>
 
 					<option value="/logout">ログアウト</option>
 			</select>
