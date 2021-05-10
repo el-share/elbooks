@@ -33,6 +33,7 @@ public class UserService implements UserDetailsService {
 		// 入力したユーザーIDから認証を行うユーザー情報を取得する
 		// 処理内容は省略
 		if (loginUser == null) {
+			System.out.println("null");
 			throw new UsernameNotFoundException("userName" + userName + "was not found in the database");
 		}
 		//adminの名前の付与

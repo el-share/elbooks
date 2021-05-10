@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.mapper.display.DisplayMapper;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class Book_yController {
 
 	@Autowired
