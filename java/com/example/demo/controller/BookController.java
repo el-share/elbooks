@@ -1,5 +1,7 @@
-//担当：原さん
-//書籍登録フォームの表示
+/**
+	 * 担当：原
+	 * 書籍登録フォームの表示
+	*/
 
 package com.example.demo.controller;
 
@@ -24,50 +26,50 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 
-//findAllを使用してisdeleteが0のデータを表示
+	//findAllを使用してisdeleteが0のデータを表示
 	@GetMapping("/mypage")
 	public String findAll(Model model) {
 		model.addAttribute("books", bookService.findAll());
-			return "/pages/mypage";
+		return "/pages/mypage";
 	}
 
-// 書籍新規登録画面
+	// 書籍新規登録画面
 	@GetMapping("/book_add")
 	String bookadd() {
 		return "/pages/book_add";
 	}
 
-// URL books/book_addより登録ボタン押下後に以下の処理を流す
-// 書籍の新規登録処理
+	// URL books/book_addより登録ボタン押下後に以下の処理を流す
+	// 書籍の新規登録処理
 	@PostMapping
 	public String create(@ModelAttribute Book book, String file, Model model) {
 		bookService.save(book);
 
-	    List<Book> test;
+		List<Book> test;
 		test = bookService.maxbook();
 
-			return "redirect:/books/mypage";
+		return "redirect:/books/mypage";
 	}
 
-//書籍編集画面
+
+	//書籍編集画面
 	@GetMapping("/ed/{bookId}")
 	String editbook(@PathVariable Long bookId, Model model) {
-		model.addAttribute("book",bookService.findOne(bookId));
-			return "/pages/book_edit";
+		model.addAttribute("book", bookService.findOne(bookId));
+		return "/pages/test/book_edit";
 	}
 
-//書籍の更新を行う
+	//書籍の更新を行う
 	@GetMapping("/{bookId}/update")
 	public String update(@ModelAttribute Book book) {
 		bookService.update(book);
-			return "redirect:/books/pages/mypage";
+		return "redirect:/books/mypage";
 	}
 
-//書籍の削除を行う
+	//書籍の削除を行う
 	@GetMapping("/{bookId}/delete")
 	public String Delete(@PathVariable Long bookId) {
 		bookService.delete(bookId);
-			return "redirect:/books/pages/mypage";
+		return "redirect:/books/mypage";
 	}
-
 }
