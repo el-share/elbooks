@@ -34,7 +34,7 @@ public class BookController {
 // 書籍新規登録画面
 	@GetMapping("/book_add")
 	String bookadd() {
-		return "/pages/book_add";
+		return "/pages/test/book_add";
 	}
 
 // URL books/book_addより登録ボタン押下後に以下の処理を流す

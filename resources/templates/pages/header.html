@@ -7,7 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- (2)共通で読み込むCSS/JS -->
-<link rel="stylesheet" href="/css/header.css">
+<link rel="stylesheet" type="text/css" href="../css/reset.css">
+<link rel="stylesheet" type="text/css" href="../css/header.css">
 
 <!-- (3)タイトルのフォーマット -->
 <title th:text="${title}+' | sample app'">各ページタイトル | sample app</title>
@@ -19,42 +20,26 @@
 </head>
 <body>
 	<header th:fragment="header">
-
-		<h1>ELBOOKS</h1>
-
-		<nav>
-			<ul>
+		<img src="../images/elbook_logo.jpeg">
+		<nav class="header-nav">
+			<ul class="menu">
+				<li><a th:href="@{/mypage}">HOME</a></li>
 				<li><a th:href="@{/loanlist}">貸出リスト</a></li>
 				<li><a th:href="@{/contact}">お問い合わせ</a></li>
+				<li><a href="#">アカウント&リスト▼</a>
+					<ul>
+						<li th:if="${#authentication.principal.LoginUser.admin_flg == 1}"><a
+							th:href="@{/books/book_add}">書籍新規登録</a></li>
+						<li th:if="${#authentication.principal.LoginUser.admin_flg == 1}"><a
+							th:href="@{/user/list}">ユーザー一覧</a></li>
+						<li th:if="${#authentication.principal.LoginUser.admin_flg == 1}"><a
+							th:href="@{/contactUs_mgt}">お問い合わせ一覧</a></li>
+						<li><a href="/logout">ログアウト</a></li>
+					</ul></li>
+
 			</ul>
+
 		</nav>
-
-		<div class="selectdiv">
-			<label> <select name="select" onChange="location.href=value;">
-					<option selected>アカウント&リスト</option>
-					<option value="">ユーザー情報変更</option>
-					<option
-						th:if="${#authentication.principal.LoginUser.admin_flg == 1}"
-						th:value="">ユーザー新規追加</option>
-
-					<option
-						th:if="${#authentication.principal.LoginUser.admin_flg == 1}"
-						th:value="/books/book_add">書籍新規登録</option>
-
-					<option
-						th:if="${#authentication.principal.LoginUser.admin_flg == 1}"
-						th:value="/user/list">ユーザー一覧</option>
-					<option
-						th:if="${#authentication.principal.LoginUser.admin_flg == 1}"
-						th:value="@{/contactUs_mgt}">お問い合わせ一覧</option>
-
-					<option value="/logout">ログアウト</option>
-			</select>
-			</label>
-		</div>
-
-
-
 	</header>
 
 
