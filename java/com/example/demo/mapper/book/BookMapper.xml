@@ -13,7 +13,7 @@
     	select book_id, title, author from m_book where isdeleted = 0;
     </select>
 
- 	<insert id="save" useGeneratedKeys="true" keyProperty="bookId">
+ 	<insert id="save" useGeneratedKeys="true" keyProperty="book_id">
   		insert into m_book (title, author) values(#{title}, #{author})
 
   	</insert>

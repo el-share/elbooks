@@ -46,7 +46,7 @@ public class BookController {
 	    List<Book> test;
 		test = bookService.maxbook();
 
-			return "redirect:/books/mypage";
+			return "redirect:/mypage";
 	}
 
 //書籍編集画面
