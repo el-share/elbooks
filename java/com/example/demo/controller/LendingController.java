@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.entity.common.Book;
 import com.example.demo.entity.common.History;
 import com.example.demo.entity.display.lendingbook.LendingBook;
+import com.example.demo.entity.display.login.LoginUserDetailsImpl;
 import com.example.demo.mapper.book_a.BookMapper_a;
 import com.example.demo.service.LendingService;
 
@@ -35,17 +37,18 @@ public class LendingController {
 	}
 
 	@PostMapping("/book")
-	public String insertBook(@ModelAttribute LendingBook lendingBook) {
-		int user_id;
-		//		List<Book> book = bookMapper.bookSelect(1);
-		//		Book book = bookOptional.get();
-		user_id = 1;
-		lendingBook.setBook_id(4);
-		lendingBook.setUser_id(user_id);
+	public String insertBook(@AuthenticationPrincipal LoginUserDetailsImpl user,@ModelAttribute LendingBook lendingBook) {
+//		int user_id;
+//		//		List<Book> book = bookMapper.bookSelect(1);
+//		//		Book book = bookOptional.get();
+//		user_id = 1;
+//		lendingBook.setBook_id(4);
+		lendingBook.setUser_id(user.getLoginUser().getUser_id());
 		lendingBook.setPlan_day("2021-05-01");
+		System.out.println(lendingBook);
 		lendingService.insertBook(lendingBook);
 		//		bookMapper.update(book);
-		return "redirect:/elbooks/booklist";
+		return "redirect:/mypage";
 	}
 
 	// 返却
@@ -63,7 +66,7 @@ public class LendingController {
 		//		lendingBook.setUser_id(1);
 		lendingService.insertReturnBook(history);
 		bookMapper.returnDelete();
-		return "redirect:/elbooks/booklist";
+		return "redirect:/mypage";
 	}
 
 	@GetMapping("/book")

@@ -6,6 +6,15 @@
 	th:replace="/pages/header :: meta_header('Document',~{::link},~{::script})">
 <link rel="stylesheet" type="text/css" href="/css/bookHistory.css">
 <link th:href="@{/css/mypage.css}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="../css/book.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/header.css">
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+<script type="text/javascript"
+	src="http://netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script th:replace=" /pages/booklist :: rentalmodal_script"></script>
 </head>
 
 <body>
@@ -34,12 +43,14 @@
 		<!-- 	本一覧表示 -->
 		<div class="grid">
 			<!-- 左のbookがループの指定/右がコントローラー -->
-			<div class="item" th:each="book:${books}">
+			<div class="item rentalTable"  th:each="book:${books}">
 				<img th:src="@{images/{bookId}.jpg(bookId=*{book.book_id})}">
 				<p th:text="'書籍名:'+${book.title}"></p>
-				<a class="booklink"
-					th:href="@{books/{bookId}/{id}(bookId=*{book.book_id})}"></a>
+				<!-- <a class="booklink"
+					th:href="@{books/{bookId}/{id}(bookId=*{book.book_id})}"></a> -->
 				<p th:text="'著者名:'+${book.author}"></p>
+				<p hidden th:text="*{book.book_id}"> </p>
+				
 			</div>
 		</div>
 
@@ -83,5 +94,6 @@
 		</div>
 
 	</main>
+	<div th:replace=" /pages/booklist :: rentalmodal"></div>
 </body>
 </html>

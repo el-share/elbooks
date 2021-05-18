@@ -1,37 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>本の編集</title>
+<head
+	th:replace="/pages/header :: meta_header('本の編集',~{::link},~{::script})">
     <link rel="stylesheet" type="text/css" href="/css/bookHistory.css">
     <link rel="stylesheet" href="/css/book_edit.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <header>
-    <img src="/images/elbook_logo.jpeg">
-    <nav class="header-nav">
-      <ul class="menu">
-        <li><a class="header-menu" href="#">貸出リスト</a></li>
-        <li><a class="header-menu" href="#">お問い合わせ</a></li>
-        <li class="header-dropdown">
-          <a class="header-menu" href="#">アカウント&リスト▼</a>
-          <ul>
-            <li><a href="#">ユーザー新規追加</a></li>
-            <li><a href="#">ユーザー情報変更</a></li>
-            <li><a href="#">書籍新規登録</a></li>
-            <li><a href="#">ユーザー一覧</a></li>
-            <li><a href="#">お問い合わせ一覧</a></li>
-            <li><button>ログアウト</button></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <header th:replace=" /pages/header :: header"> </header>
 
     <div class="margin">
         <form th:action="@{/books/{bookId}/update (bookId=*{book_id})}" th:object="${book}">

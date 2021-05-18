@@ -11,26 +11,31 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../css/book.css">
 <title>Insert title here</title>
-</head>
-
-<script type="text/javascript">
+<script th:fragment="rentalmodal_script" type="text/javascript">
 	$(document).ready(function(){
 
 		$('.rentalTable').click(function(){
 
-			let td_book_title = $(this).children('td')[0].innerText;
+			let td_book_title = $(this).children('p')[0].innerText;
 			$('#book_title').val(td_book_title);
 
-			let td_book_author = $(this).children('td')[1].innerText;
+			let td_book_author = $(this).children('p')[1].innerText;
 			$('#book_author').val(td_book_author);
 
-			let td_book_page = $(this).children('td')[2].innerText;
-			$('#book_page').val(td_book_page);
+			 let td_book_id = $(this).children('p')[2].innerText;
+			$('#book_page').val(td_book_id); 
 
+			let element =document.getElementById( 'ohira_tmp') ;
+			element.src=`../images/${td_book_id}.jpg`;
+			
+			let rental_input_id=document.getElementById( 'book_id') ;
+			rental_input_id.value=td_book_id;
+			console.log(rental_input_id.value);
 			$('#rentalModal').modal('show');
 		});
 	});
 </script>
+</head>
 
 <body>
 	<div>
@@ -62,14 +67,14 @@
 	</div> -->
 
 		<!-- 貸出モーダル -->
-		<div class="myForm" th:each="book: ${Book}">
+		<div th:fragment="rentalmodal" class="myForm" >
 			<div class="modal fade" id="rentalModal" tabindex="-1" role="dialog"
 				aria-labelledby="Modal" aria-hidden="true">
 				<div class="modal-dialog modal-lg" role="document">
 					<div class="modal-content">
 						<div class="modal-body">
 							<div class="imageBlock">
-								<img class="bookImage" src="../images/book.png" alt="">
+								<img id="ohira_tmp" class="bookImage" src="../images/book.png" alt="">
 								<p class="inventory">在庫数1冊</p>
 							</div>
 
@@ -83,8 +88,9 @@
 							<p class="description"></p>
 							<form th:action="@{/elbooks/book}" th:method="post"
 								th:object="${lendingBook}">
+								<input type="hidden" id="book_id" name="book_id">
 								<button type="submit" id="rental_Book" class="rental"
-									th:object=${Book} th:value="${book.book_id}" onSubmit="return check()">借りる</button>
+									 onSubmit="return check()">借りる</button>
 							</form>
 							<button type="submit" class="return">返却</button>
 						</div>

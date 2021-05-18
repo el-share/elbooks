@@ -1,32 +1,32 @@
-body {
+/* 
+更新日：2021/5/18
+編集：オオヒラ
+コメント：①headerをパーツ化したのでheaderタグを削除しました。
+②navタグがヘッダーと干渉していたため、コメントアウトしています。
+クラスで定義するなどして当てなおして欲しいです。
+問題：headerのcssがうまく当たらない:解決
+ */
+/* body {
    background: #ffffff;
    width: 100%;
 }
-
-header {
-	height: 0px;
-    background: #dcdcdc;
-    margin-top: 10px;
-    margin-left: -5px;
-    padding: 45px;
-    padding-left: 19px;
-}
-
-h1 {
+ */
+/* h1 {
       position:relative;
       top: -45px;
       font-size: 2.2em;
 }
-
-.selectdiv {
+ */
+/* IEの対策？ */
+ .selectdiv {
     position: relative;
-    /*Don't really need this just for demo styling*/
+    /* Don't really need this just for demo styling */
     float: left;
     min-width: 205px;
     margin: -85px 85%;
 }
 
-  /* IE11 hide native button (thanks Matt!) */
+ /*  IE11 hide native button (thanks Matt!) */
  select::-ms-expand {
   display: none;
 }
@@ -40,12 +40,11 @@ h1 {
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
     right: 11px;
-    /*Adjust for position however you want*/
-
+    /* Adjust for position however you want*/
     top: 18px;
     padding: 0 0 2px;
     border-bottom: 1px solid #999;
-    /*left line */
+    /* left line */
 
     position: absolute;
     pointer-events: none;
@@ -73,9 +72,9 @@ h1 {
     -ms-word-break: normal;
     word-break: normal;
     font-weight: bold;
-}
+} 
 
-
+/* 
 nav ul {
       list-style-type: none;
       margin: -65px -13%;
@@ -97,8 +96,8 @@ nav {
 nav a {
       color:#000000;
       text-decoration: 500px;
-}
-
+} */
+ 
 
 
 .userEntryModalButton{
@@ -132,10 +131,9 @@ table th,table td{
     width: 25%;
     padding: 15px 0;
 }
-
-p{
+ p{
     padding-left: 20px;
-}
+} 
 
 span {
     margin-left: 5px;
@@ -228,12 +226,11 @@ span {
     top:-30px;
     left:-260px;
 }
-
-.inline-block {
+ .inline-block {
     display: inline-block;
     padding: 0px;
     height: 20px;
     width: 40%;
     margin-top: 40px;
     margin-left: 10px;
-}
+} 

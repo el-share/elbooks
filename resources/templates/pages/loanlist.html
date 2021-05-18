@@ -20,7 +20,7 @@
 </head>
 <body>
 	<header th:replace=" /pages/header :: header"> </header>
-	
+
 	<p class="fas fa-book-open text1">貸出リスト一覧</p>
 	<!-- <table class="table-separate" th:each="loan:${loans}">
     <tr >
@@ -42,8 +42,8 @@
 			<p th:text="'書籍名:'+${loan.title}"></p>
 			<!-- <a class="booklink" th:href="@{books/{bookId}/{id}(bookId)=*{book.bookId}, id=*{user.id})}"></a> -->
 			<p th:text="'著者名:'+${loan.author}"></p>
-			<br>
-			<input type="button" value="返却日 2021年○月○日" onclick="ohayou()">
+			<br> <input type="button" value="返却日 2021年○月○日"
+				onclick="ohayou()">
 		</div>
 	</div>
 </body>
