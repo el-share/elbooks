@@ -11,12 +11,12 @@
 	<insert id="insert"
 		parameterType="com.example.demo.entity.display.lendingbook.LendingBook">
 		INSERT INTO t_loan (book_id, user_id, plan_day)
-		VALUES (#{book_id}, #{user_id}, #{plan_day})
+		VALUES (#{book_id}, #{user_id}, DATE_ADD(CURRENT_TIMESTAMP(),interval 14 day))
 	</insert>
 
 	<update id="update"
 		parameterType="com.example.demo.entity.common.Book">
-		UPDATE m_book SET max_num = 0 WHERE book_id = #{book_id};
+		UPDATE m_book SET max_num = #{max_num} WHERE book_id = #{book_id};
 		</update>
 
 	<select id="bookSelect"

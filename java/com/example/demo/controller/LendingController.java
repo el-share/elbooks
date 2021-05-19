@@ -36,17 +36,22 @@ public class LendingController {
 		return "/pages/booklist";
 	}
 
+	/**
+	 * 借りる機能
+	 * 編集日：2021/5/18
+	 * 編集：オオヒラ
+	 * コメント：マージしました。
+	 */
 	@PostMapping("/book")
 	public String insertBook(@AuthenticationPrincipal LoginUserDetailsImpl user,@ModelAttribute LendingBook lendingBook) {
-//		int user_id;
-//		//		List<Book> book = bookMapper.bookSelect(1);
-//		//		Book book = bookOptional.get();
-//		user_id = 1;
-//		lendingBook.setBook_id(4);
+		//user_idをログインユーザーから取得してセット
 		lendingBook.setUser_id(user.getLoginUser().getUser_id());
-		lendingBook.setPlan_day("2021-05-01");
-		System.out.println(lendingBook);
+		
+		
+		
+		//サービス呼び出し
 		lendingService.insertBook(lendingBook);
+		
 		//		bookMapper.update(book);
 		return "redirect:/mypage";
 	}

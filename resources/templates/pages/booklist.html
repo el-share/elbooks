@@ -11,7 +11,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../css/book.css">
 <title>Insert title here</title>
-<script th:fragment="rentalmodal_script" type="text/javascript">
+<script th:fragment="rentalmodal_script" type="text/javascript" th:inline="javascript">
 	$(document).ready(function(){
 
 		$('.rentalTable').click(function(){
@@ -28,9 +28,11 @@
 			let element =document.getElementById( 'ohira_tmp') ;
 			element.src=`../images/${td_book_id}.jpg`;
 			
+			/*[# th:if="${#authentication.principal.LoginUser.admin_flg == 0}"]*/
 			let rental_input_id=document.getElementById( 'book_id') ;
 			rental_input_id.value=td_book_id;
 			console.log(rental_input_id.value);
+			/*[/]*/
 			$('#rentalModal').modal('show');
 		});
 	});
@@ -86,7 +88,7 @@
 							<p class="bookPage"></p>
 							<input type="text" id="book_page">
 							<p class="description"></p>
-							<form th:action="@{/elbooks/book}" th:method="post"
+							<form  th:if="${#authentication.principal.LoginUser.admin_flg == 0}" th:action="@{/elbooks/book}" th:method="post"
 								th:object="${lendingBook}">
 								<input type="hidden" id="book_id" name="book_id">
 								<button type="submit" id="rental_Book" class="rental"
