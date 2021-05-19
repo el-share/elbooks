@@ -22,6 +22,10 @@
 <body>
 	<header th:fragment="header">
 		<img src="../images/elbook_logo.jpeg">
+		<ul>
+		<li th:text="ようこそ：+${#authentication.principal.LoginUser.user_name}+さん"></li>
+		<li th:text="権限：+${#authentication.principal.authorities}"></li>
+		</ul>
 		<nav class="header-nav">
 			<ul class="menu">
 				<li><a th:href="@{/mypage}">HOME</a></li>

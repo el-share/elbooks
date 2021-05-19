@@ -2,6 +2,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.common.Book;
 import com.example.demo.entity.common.History;
@@ -33,6 +35,7 @@ public class LendingController {
 	public String booklist(Model model) {
 		List<Book> list = bookMapper.select();
 		model.addAttribute("Book", list);
+		model.addAttribute("lendingBook", new LendingBook());
 		return "/pages/booklist";
 	}
 
@@ -43,13 +46,14 @@ public class LendingController {
 	 * コメント：マージしました。
 	 */
 	@PostMapping("/book")
-	public String insertBook(@AuthenticationPrincipal LoginUserDetailsImpl user,@ModelAttribute LendingBook lendingBook) {
+	public String insertBook(@AuthenticationPrincipal LoginUserDetailsImpl user,@ModelAttribute LendingBook lendingBook,@ModelAttribute Book book, @RequestParam int rental_maxnum, @RequestParam int rentalBookId) {
 		//user_idをログインユーザーから取得してセット
 		lendingBook.setUser_id(user.getLoginUser().getUser_id());
-		
-		
-		
+		int max_num = rental_maxnum -1;
+		book.setMax_num(max_num);
+		book.setBook_id(lendingBook.getBook_id());
 		//サービス呼び出し
+		lendingService.updateMax_num(book);
 		lendingService.insertBook(lendingBook);
 		
 		//		bookMapper.update(book);
@@ -58,20 +62,24 @@ public class LendingController {
 
 	// 返却
 	@GetMapping("/returnlist")
-	public String returnlist(Model model) {
+	public String returnlist(Model model, @ModelAttribute History history) {
 		List<LendingBook> list = bookMapper.returnSelect();
 		model.addAttribute("LendingBook", list);
 		return "/pages/returnlist";
 	}
 
-	@PostMapping("/returnBook")
-	public String insertReturnBook(@ModelAttribute History history) {
-		//		LendingBook lendingBook = new LendingBook();
-		//		lendingBook.setBook_id(1);
-		//		lendingBook.setUser_id(1);
-		lendingService.insertReturnBook(history);
-		bookMapper.returnDelete();
-		return "redirect:/mypage";
+	@PostMapping("/returnbook")
+	public String returnInsert(@RequestParam int returnBookId) {
+		Optional<Book> optional = bookMapper.maxnumSelect(returnBookId);
+		Book book = optional.get();
+		int max_num = book.getMax_num() +1;
+		book.setMax_num(max_num);
+		book.setBook_id(returnBookId);
+		lendingService.updateMax_num(book);
+		System.out.println(book);
+		lendingService.insertReturnBook(returnBookId);
+		lendingService.returndelete(returnBookId);
+		return "redirect:/elbooks/returnlist";
 	}
 
 	@GetMapping("/book")

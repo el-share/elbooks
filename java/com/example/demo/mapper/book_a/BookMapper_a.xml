@@ -14,6 +14,10 @@
 		VALUES (#{book_id}, #{user_id}, DATE_ADD(CURRENT_TIMESTAMP(),interval 14 day))
 	</insert>
 
+<select id="maxnumSelect" resultType="com.example.demo.entity.common.Book">
+  	SELECT max_num FROM m_book WHERE book_id = #{book_id};
+  </select>
+
 	<update id="update"
 		parameterType="com.example.demo.entity.common.Book">
 		UPDATE m_book SET max_num = #{max_num} WHERE book_id = #{book_id};
@@ -36,20 +40,20 @@
 		t_loan.book_id = m_book.book_id
 		and m_category.category_id =
 		m_book.category_id
-		and t_loan.user_id = 1;
+		and t_loan.user_id = #{user_id};
 	</select>
 
 	<!-- t_historyに登録 書籍返却したよ〜履歴 -->
 	<insert id="returnInsert"
 		parameterType="com.example.demo.entity.common.History">
 		INSERT INTO t_history (book_id, user_id, loan_day)
-		VALUES (#{book_id}, #{user_id}, #{loan_day});
+		VALUES (#{book_id}, #{user_id}, "2021-04-30");
 	</insert>
 
 	<!-- t_loanから返却した書籍のデータを削除 -->
 	<delete id="returnDelete"
 		parameterType="com.example.demo.entity.display.lendingbook.LendingBook">
-		DELETE FROM t_loan WHERE book_id = 1 AND user_id = 1;
+		DELETE FROM t_loan WHERE t_loan.book_id = #{book_id} AND t_loan.user_id = #{user_id} ;
 	</delete>
 
 </mapper>
