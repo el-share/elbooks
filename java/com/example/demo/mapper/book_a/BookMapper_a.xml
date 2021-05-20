@@ -8,13 +8,18 @@
 		select * from m_book;
 	</select>
 
+<select id="selectLengingBookOne"
+		resultType="com.example.demo.entity.display.lendingbook.LendingBook">
+		select * from m_book where book_id=#{book_id};
+	</select>
+
 	<insert id="insert"
 		parameterType="com.example.demo.entity.display.lendingbook.LendingBook">
 		INSERT INTO t_loan (book_id, user_id, plan_day)
 		VALUES (#{book_id}, #{user_id}, DATE_ADD(CURRENT_TIMESTAMP(),interval 14 day))
 	</insert>
 
-<select id="maxnumSelect" resultType="com.example.demo.entity.common.Book">
+<select id="maxnumSelect" resultType="com.example.demo.entity.display.lendingbook.LendingBook">
   	SELECT max_num FROM m_book WHERE book_id = #{book_id};
   </select>
 

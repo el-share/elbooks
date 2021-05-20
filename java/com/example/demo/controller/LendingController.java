@@ -1,4 +1,4 @@
-//
+//担当者：新井さん
 package com.example.demo.controller;
 
 import java.util.List;
@@ -10,14 +10,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.common.Book;
 import com.example.demo.entity.common.History;
 import com.example.demo.entity.display.lendingbook.LendingBook;
 import com.example.demo.entity.display.login.LoginUserDetailsImpl;
+import com.example.demo.mapper.book.BookMapper;
 import com.example.demo.mapper.book_a.BookMapper_a;
 import com.example.demo.service.LendingService;
 
@@ -29,6 +30,8 @@ public class LendingController {
 	BookMapper_a bookMapper;
 	@Autowired
 	LendingService lendingService;
+	@Autowired
+	BookMapper bookMapper_hara;
 
 	// 貸出画面
 	@GetMapping("/booklist")
@@ -41,24 +44,33 @@ public class LendingController {
 
 	/**
 	 * 借りる機能
-	 * 編集日：2021/5/18
+	 * 編集日：2021/5/19
 	 * 編集：オオヒラ
-	 * コメント：マージしました。
+	 * コメント：いくつか変更しました。
 	 */
-	@PostMapping("/book")
-	public String insertBook(@AuthenticationPrincipal LoginUserDetailsImpl user,@ModelAttribute LendingBook lendingBook,@ModelAttribute Book book, @RequestParam int rental_maxnum, @RequestParam int rentalBookId) {
+	@PostMapping("/book/{book_id}")
+	public String insertBook(@AuthenticationPrincipal LoginUserDetailsImpl user,@ModelAttribute LendingBook lendingBook,@ModelAttribute Book book,@PathVariable("book_id") Integer book_id) {
 		//user_idをログインユーザーから取得してセット
+		lendingBook=bookMapper.selectLengingBookOne(book_id);
 		lendingBook.setUser_id(user.getLoginUser().getUser_id());
-		int max_num = rental_maxnum -1;
-		book.setMax_num(max_num);
+		
+		System.out.println(lendingBook.getUser_id());
+		System.out.println(lendingBook.getBook_id());
+		
+		book.setMax_num(lendingBook.getMax_num()-1) ;
 		book.setBook_id(lendingBook.getBook_id());
+		
 		//サービス呼び出し
 		lendingService.updateMax_num(book);
+		
 		lendingService.insertBook(lendingBook);
 		
 		//		bookMapper.update(book);
 		return "redirect:/mypage";
 	}
+	/**
+	 * /借りる機能
+	 */
 
 	// 返却
 	@GetMapping("/returnlist")
@@ -68,19 +80,44 @@ public class LendingController {
 		return "/pages/returnlist";
 	}
 
-	@PostMapping("/returnbook")
-	public String returnInsert(@RequestParam int returnBookId) {
-		Optional<Book> optional = bookMapper.maxnumSelect(returnBookId);
-		Book book = optional.get();
-		int max_num = book.getMax_num() +1;
-		book.setMax_num(max_num);
-		book.setBook_id(returnBookId);
-		lendingService.updateMax_num(book);
-		System.out.println(book);
+	/**
+	 * 機能：返却機能
+	 * 作成者：新井さん
+	 * 最終編集者：オオヒラ
+	 * */
+	@PostMapping("/returnbook/{returnBookId}")
+	public String returnInsert(@PathVariable("returnBookId") Integer returnBookId,@ModelAttribute LendingBook lendingBook,@AuthenticationPrincipal LoginUserDetailsImpl user) {
+		//book_idをセット
+		lendingBook.setBook_id(returnBookId);
+		
+		//user_idをセット
+		lendingBook.setUser_id(user.getLoginUser().getUser_id());
+		
+		//現在の冊数を取得(適切なクラスに変えてください)【】
+		Optional<LendingBook> optional = bookMapper.maxnumSelect(lendingBook);
+		lendingBook = optional.get();
+		
+		//冊数+1処理
+		int max_num = lendingBook.getMax_num() +1;
+		lendingBook.setMax_num(max_num);
+		
+		//冊数更新処理
+		lendingService.updateMax_num(lendingBook);
+		
+		System.out.println(lendingBook);
+		
+		//履歴の挿入処理
 		lendingService.insertReturnBook(returnBookId);
+		
+		//レンタルテーブルから削除処理
 		lendingService.returndelete(returnBookId);
-		return "redirect:/elbooks/returnlist";
+		
+		//メインメニューにリダイレクト
+		return "redirect:/mypage";
 	}
+	/**
+	 * /機能：返却機能
+	 * */
 
 	@GetMapping("/book")
 	public String Book() {

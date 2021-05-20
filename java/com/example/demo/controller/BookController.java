@@ -53,21 +53,21 @@ public class BookController {
 	@GetMapping("/ed/{bookId}")
 	String editbook(@PathVariable Long bookId, Model model) {
 		model.addAttribute("book",bookService.findOne(bookId));
-			return "/pages/test/book_edit";
+			return "/pages/book_edit";
 	}
 
 //書籍の更新を行う
 	@GetMapping("/{bookId}/update")
 	public String update(@ModelAttribute Book book) {
 		bookService.update(book);
-			return "redirect:/books/mypage";
+			return "redirect:/mypage";
 	}
 
 //書籍の削除を行う
 	@GetMapping("/{bookId}/delete")
 	public String Delete(@PathVariable Long bookId) {
 		bookService.delete(bookId);
-			return "redirect:/books/mypage";
+			return "redirect:/mypage";
 	}
 
 }

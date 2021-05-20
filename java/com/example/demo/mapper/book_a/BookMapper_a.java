@@ -30,5 +30,7 @@ public interface BookMapper_a {
 
 		public void returnDelete(int book_id);
 
-		Optional<Book> maxnumSelect(int book_id);
+		Optional<LendingBook> maxnumSelect(LendingBook lendingBook);
+
+		LendingBook selectLengingBookOne(int book_id);
 	}

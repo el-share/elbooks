@@ -49,6 +49,7 @@
 				<!-- <a class="booklink"
 					th:href="@{books/{bookId}/{id}(bookId=*{book.book_id})}"></a> -->
 				<p th:text="'著者名:'+${book.author}"></p>
+				<p hidden th:text="*{book.page}" > </p>
 				<p hidden th:text="*{book.book_id}" > </p>
 				<p hidden th:text="*{book.max_num}"> </p>
 				
